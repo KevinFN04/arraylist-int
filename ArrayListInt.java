@@ -101,32 +101,27 @@ public class ArrayListInt
     public int indexOf(int elemento){
         int index = 0;
         int count = 0;
-        if (contains(elemento)){            
-            while (count < arrayList.length){
-                if (arrayList[count] == elemento){
-                    index = count;
-                }
-                count++;
-            }  
-        }
-        else{
+        boolean encontrado = false;
+        while (count < arrayList.length){
+            if (arrayList[count] == elemento){
+                index = count;
+                encontrado = true;
+            }
+            count++;
+        }          
+        if (!encontrado){
             index = -1;
         }
-        
         return index;
     }
-    
+
     /**
      * devuelve true si la lista esta vacia.
      */
     public boolean isEmpty(){
-        boolean vacio = false;
-        if (arrayList.length == 0){
-            vacio = true;
-        }
-        return vacio;
+        return arrayList.length == 0;
     }
-    
+
     /**
      * elimina un elemento en una posicion dada.
      */
@@ -151,7 +146,7 @@ public class ArrayListInt
         }
         return eliminado;
     }
-    
+
     /**
      * devuelve el tamaño de la lista.
      */
