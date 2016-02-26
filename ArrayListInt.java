@@ -11,14 +11,14 @@ public class ArrayListInt
     private int[] arrayList;
 
     /**
-     * 
+     * Constructor de la clase ArrayListInt
      */
     public ArrayListInt(){
         arrayList = new int[0];
     }
 
     /**
-     * 
+     * Añade un objeto al arrayList
      */
     public void add(int elemento){
         int[] array2 = arrayList;
@@ -31,10 +31,10 @@ public class ArrayListInt
     }
 
     /**
-     * 
+     * Añade un objeto al arrayList en la posicion de index.
      */
     public void add(int index, int elemento){
-        if (index <= arrayList.length){
+        if (index <= arrayList.length && index >= 0){
             int[] array2 = arrayList;
             arrayList = new int[array2.length + 1];
             for (int count = 0; count < array2.length; count++)
@@ -49,27 +49,113 @@ public class ArrayListInt
             arrayList[index] = elemento;
         }
     }
-    
+
     /**
-     * 
+     * Limpia la lista de objetos.
      */
     public void clear(){
         arrayList = new int[0];
     }
-    
+
     /**
-     * 
+     * busca un objeto en la coleccion y devuelve true si esta.
      */
     public boolean contains(int elemento){
         boolean encontrado = false;
         int count = 0;
         while (!false && count < arrayList.length){
             if (arrayList[count] == elemento){
-                arrayList[count] = elemento;
                 encontrado = true;
             }
             count++;
         }
         return encontrado;
+    }
+
+    /**
+     * Devuelve el elemento de la lista en la posicion dada.
+     */
+    public int get(int index){
+        int elemento = 0;
+        if (index < arrayList.length && index >= 0){
+            elemento = arrayList[index];
+        }
+        else{
+            elemento = -1;
+        }
+        return elemento;
+    }
+
+    /**
+     * cambia un elemento de la lista
+     */
+    public void set(int index, int element){
+        if (index < arrayList.length && index >= 0){
+            arrayList[index] = element;
+        }
+    }
+
+    /**
+     * busca el indice de un elemento dado
+     */
+    public int indexOf(int elemento){
+        int index = 0;
+        int count = 0;
+        if (contains(elemento)){            
+            while (count < arrayList.length){
+                if (arrayList[count] == elemento){
+                    index = count;
+                }
+                count++;
+            }  
+        }
+        else{
+            index = -1;
+        }
+        
+        return index;
+    }
+    
+    /**
+     * devuelve true si la lista esta vacia.
+     */
+    public boolean isEmpty(){
+        boolean vacio = false;
+        if (arrayList.length == 0){
+            vacio = true;
+        }
+        return vacio;
+    }
+    
+    /**
+     * elimina un elemento en una posicion dada.
+     */
+    public int remove(int index){
+        int eliminado = 0;
+        if (index <= arrayList.length && index >= 0){
+            int[] array2 = arrayList;
+            arrayList = new int[array2.length - 1];
+            for (int count = 0; count < arrayList.length; count++)
+            {
+                if (index < count){
+                    arrayList[count] = array2[count];                    
+                }
+                else{
+                    arrayList[count] = array2[count+1];
+                }
+            }
+            eliminado = array2[index];
+        }
+        else{
+            eliminado = -1;
+        }
+        return eliminado;
+    }
+    
+    /**
+     * devuelve el tamaño de la lista.
+     */
+    public int size(){
+        return arrayList.length;
     }
 }
